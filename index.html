@@ -17,6 +17,8 @@
         - for help or queries, feel free to message me @mirainikki!!!
         
         <!--
+
+        <!--
         
         credits:
         - tooltips: https://manos.malihu.gr/style-my-tooltips-jquery-plugin/
@@ -80,7 +82,6 @@
         </script>
         <script src="https://momentjs.com/downloads/moment.js"></script>
         <script src="https://unpkg.com/draggabilly@3/dist/draggabilly.pkgd.min.js"></script>
-        <script src="https://unpkg.com/infinite-scroll@5/dist/infinite-scroll.pkgd.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js"></script>
         <!-- end scripts -->
 
@@ -147,8 +148,8 @@
                 --NPF-Images-Spacing: 10px;
                 --NPF-Caption-Spacing: 10px;
                 --NPF-Move-1st-Photoset: "yes";
-                --Text-Container-Selector: ".caption";
-                --Text-Reblogs-Selector: ".tumblr_parent";
+                --Text-Container-Selector: "";
+                --Text-Reblogs-Selector: ".caption";
             }
         </style>
         <!-- end npf image fix -->
@@ -651,12 +652,18 @@
                 width:50%;
             }
 
-            .barmiddle .material-symbols-outlined{
+            .barmiddle .material-symbols-outlined, .barright .material-symbols-outlined{
                 font-size: 25px !important;
             }
 
             .barleft, .barright{
                 width:25%;
+            }
+
+            .barright{
+                display:flex;
+                gap:10px;
+                justify-content:flex-end;
             }
 
             #askwindow, #archivewindow{
@@ -695,7 +702,7 @@
                 overflow-y: auto;
             }
 
-            .title{
+            .quidward{
                 text-align:center;
                 font-size:{text:title font size}px;
                 font-family:{text:title font};
@@ -712,13 +719,17 @@
                 box-sizing:border-box;
             }
 
-            .description{
+            .desc{
                 flex:1;
                 overflow:auto;
                 text-align:center;
                 border: var(--border2);
                 padding:10px;
                 background-color:{color:description bg color};
+                display:flex;
+                justify-content:center;
+                align-content:center;
+                align-items:center;
             }
 
             .tmblrcontrols{
@@ -792,10 +803,15 @@
                 margin: 10px 0 !important;
                 border-radius: 0 !important;
                 box-sizing: border-box;
+                background-color: {color:posts bg color};
             }
 
             div.npf-link-block .bottom {
                 padding: 10px !important;
+            }
+            
+            .npf_col {
+                overflow: visible !important;
             }
 
             .footer {
@@ -860,10 +876,6 @@
             }
 
             .npf_group {
-                margin: 10px 0 !important;
-            }
-
-            .npf_group:first-child {
                 margin: 0 0 10px 0 !important;
             }
 
@@ -954,6 +966,10 @@
                 z-index: 1;
                 right: -15px;
                 top: 10px;
+            }
+            
+            .ans img{
+                margin:10px 0;
             }
 
             .poll-post .poll-see-results{
@@ -1181,12 +1197,6 @@
         {block:ifscanlines}
         <div class="lines"></div>
         {/block:ifscanlines}
-        
-        <div id="theme-colors"
-             data-color-symbols="{color:symbols color}"
-             data-color-body="{color:body font color}"
-             data-color-bg="{color:polls n asks bg color}">
-        </div>
 
         <div id="wrapper">
             <div id="taskbar">
@@ -1361,17 +1371,17 @@
                 <div class="appswrapper">
                     <a
                         ><div class="app" onclick="openWindow('mainwindow');">
-                            <img src="{image:desktop app trash image}" /> {text:desktop app trash text}
+                            <div class="material-symbols-outlined">delete</div> {text:desktop app trash text}
                         </div></a
                     >
                     <a
                         ><div class="app" onclick="openWindow('askwindow');">
-                            <img src="{image:desktop app ask image}" /> {text:desktop app ask text}
+                            <div class="material-symbols-outlined">help</div> {text:desktop app ask text}
                         </div></a
                     >
                     <a
                         ><div class="app" onclick="openWindow('archivewindow');">
-                            <img src="{image:desktop app archive image}" /> {text:desktop app archive text}
+                            <div class="material-symbols-outlined">archive</div> {text:desktop app archive text}
                         </div></a
                     >
                     {block:ifshowdesktopapplink1}
@@ -1410,15 +1420,24 @@
                             <a href="/"><span class="material-symbols-outlined">refresh</span></a>
                         </div>
 
-                        <div class="barright"></div>
+                        <div class="barright">
+                            {block:Pagination}
+                            {block:PreviousPage}
+                            <a href="{PreviousPage}"><span class="material-symbols-outlined">arrow_back</span></a>
+                            {/block:PreviousPage}
+                            {block:NextPage}
+                            <a href="{NextPage}"><span class="material-symbols-outlined">arrow_forward</span></a>
+                            {/block:NextPage}
+                            {/block:Pagination}
+                        </div>
                     </div>
 
                     <div class="windowwrapper">
                         <div class="sidebarwrapper">
                             <img class="icon" src="{image:icon}" />
                             <div class="icallpatricksubaru">
-                                <div class="title">{text:title text}</div>
-                                <div class="description">{text:description text}</div>
+                                <div class="quidward">{text:title text}</div>
+                                <div class="desc">{text:description text}</div>
                                 <div class="tmblrcontrols">
                                     <a href="https://tumblr.com/follow/{Name}"
                                         ><span class="material-symbols-outlined">person_add</span> Follow</a
@@ -1491,12 +1510,7 @@
                                     </div>
                                     {/block:Answerer}
                                     <!--Original Post-->
-                                    {block:NotReblog} 
-                                    <div class="askwrap" style="margin:10px 0">
-                                        <div class="ans"><p><strong><a href="/">{Name}</a></strong> replied:</p> {Replies}</div> 
-                                        <img class="portrait" src="{PortraitURL-64}" />
-                                    </div> 
-                                    {/block:NotReblog}
+                                    {block:NotReblog} <div class="askwrap" style="margin:10px 0"><div class="ans"><p><strong><a href="/">{Name}</a></strong> replied:</p> {Replies}</div> <img class="portrait" src="{PortraitURL-64}" /></div> {/block:NotReblog}
                                     <!--Post is a reblog-->
                                     {block:RebloggedFrom}
                                     <div class="reblog-list">
@@ -1745,7 +1759,7 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="credit">
             <a title="Theme by Adilene" href="https://mirainikki.tumblr.com/"
                 ><span class="material-symbols-outlined">favorite</span></a
@@ -1828,8 +1842,7 @@
                 // remember to add commas after every bracket except the last one!!!!
             ];
         </script>
-
-        <script src="https://static.tumblr.com/7wlbbws/Zuxsy2xfq/infscroll.js"></script>
+        
         <script src="https://static.tumblr.com/7wlbbws/4gQsxxokc/music.js"></script>
     </body>
 </html>
