@@ -1491,7 +1491,12 @@
                                     </div>
                                     {/block:Answerer}
                                     <!--Original Post-->
-                                    {block:NotReblog} {Replies} {/block:NotReblog}
+                                    {block:NotReblog} 
+                                    <div class="askwrap" style="margin:10px 0">
+                                        <div class="ans"><p><strong><a href="/">{Name}</a></strong> replied:</p> {Replies}</div> 
+                                        <img class="portrait" src="{PortraitURL-64}" />
+                                    </div> 
+                                    {/block:NotReblog}
                                     <!--Post is a reblog-->
                                     {block:RebloggedFrom}
                                     <div class="reblog-list">
