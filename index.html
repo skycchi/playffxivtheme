@@ -1373,21 +1373,27 @@
                             <img src="{image:desktop app archive image}" /> {text:desktop app archive text}
                         </div></a
                     >
-                    <a href="{text:desktop app link 1 url}"
-                        ><div class="app">
+                    {block:ifshowdesktopapplink1}
+                    <a href="{text:desktop app link 1 url}">
+                        <div class="app">
                             <img src="{image:desktop app link 1 image}" /> {text:desktop app link 1 text}
-                        </div></a
-                    >
-                    <a href="{text:desktop app link 2 url}"
-                        ><div class="app">
+                        </div>
+                    </a>
+                    {/block:ifshowdesktopapplink1}
+                    {block:ifshowdesktopapplink2}
+                    <a href="{text:desktop app link 2 url}">
+                        <div class="app">
                             <img src="{image:desktop app link 2 image}" /> {text:desktop app link 2 text}
-                        </div></a
-                    >
-                    <a href="{text:desktop app link 3 url}"
-                        ><div class="app">
+                        </div>
+                    </a>
+                    {/block:ifshowdesktopapplink2}
+                    {block:ifshowdesktopapplink3}
+                    <a href="{text:desktop app link 3 url}">
+                        <div class="app">
                             <img src="{image:desktop app link 3 image}" /> {text:desktop app link 3 text}
-                        </div></a
-                    >
+                        </div>
+                    </a>
+                    {block:ifshowdesktopapplink3}
                 </div>
 
                 <div class="window draggable" id="mainwindow" style="display: block">
