@@ -100,7 +100,7 @@
                 --Poll-Option-Text-Color: {color:body font color};
 
                 --Poll-Option-HOVER-Border-Color: {color:border 2 color};
-                --Poll-Option-HOVER-Background-Color: {color:polls n asks bg color};
+                --Poll-Option-HOVER-Background-Color: {color:polls hover bg color};
                 --Poll-Option-HOVER-Text-Color: {color:body font color};
                 --Poll-Option-HOVER-Speed: 0.3s;
             }
@@ -186,6 +186,7 @@
         <meta name="color:post wrapper bg color" content="#ffffff" />
         <meta name="color:posts bg color" content="#ffffff" />
         <meta name="color:polls n asks bg color" content="#ffdfe5" />
+        <meta name="color:polls hover bg color" content="#F18BA9" />
         <meta name="color:footer bg color" content="#FFDFE5" />
         <meta name="color:sidebar bg color" content="#fff6f8" />
         <meta name="color:description bg color" content="#ffffff" />
@@ -195,6 +196,7 @@
         <meta name="color:box shadow" content="#F18BA9" />
         <meta name="color:pinned post tape color" content="#FFAFC4" />
         <meta name="color:music player accent color" content="#ffdfe5" />
+        <meta name="color:music player buttons hover bg color" content="#F18BA9" />
         <meta name="color:selection bg color" content="#F18BA9" />
         <meta name="color:selection text color" content="#F18BA9" />
         <meta name="color:list bullet color" content="#F18BA9" />
@@ -1014,12 +1016,25 @@
 
             .controls {
                 border:var(--border2);
-                background-color: {color:music player accent color};
+                background-color: {color:music player accent color 1};
                 width: 100%;
             }
 
             .controls span{
                 padding:0;
+            }
+            
+            .controls span:hover{
+                background-color: unset;
+            }
+            
+            .controls td{
+                transition:0.3s;
+            }
+            
+            .controls td:hover{
+                background-color:{color:music player buttons hover bg color};
+                transition:0.3s;
             }
 
             .seeking,
